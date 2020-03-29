@@ -11,8 +11,4 @@ export const card = StyleSheet.create({
         fontSize: 16
     }
   })
-
-export const header = StyleSheet.create({
-    
-})
   
