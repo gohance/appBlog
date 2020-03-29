@@ -46,7 +46,9 @@ export default class Comments extends Component {
          }
        })
        .then(data => {
+          console.log("berhasil")
           this.props.navigation.goBack();
+         // this.props.navigation.navigate('Detail', { post: post });
        })
        .catch(err => {
          console.log(err);

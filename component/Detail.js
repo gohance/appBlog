@@ -10,6 +10,7 @@ export default class Detail extends Component {
          comments: [],
          base_url: "https://blog-purwadhika.appspot.com/"
       }
+      this.getComments()
    }
    
    render() {
@@ -62,6 +63,10 @@ export default class Detail extends Component {
    }
 
    componentDidMount () {
+      this.getComments()
+   }
+
+   getComments () {
       const { post } = this.props.route.params;
       axios({
          method: 'get',
