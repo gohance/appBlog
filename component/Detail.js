@@ -50,7 +50,7 @@ export default class Detail extends Component {
                      return(
                         <View key={comment.id} style={{ paddingTop: 10, paddingBottom: 10, borderBottomColor: '#d1d1d1', borderBottomWidth: 1 }}>
                            <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{"Gohan Parningotan"}</Text>
-                           <Text style={{ color: '#888888', marginBottom: 10}}>{comment.timestamp_created}</Text>
+                           <Text style={{ color: '#888888', marginBottom: 10 }}>{comment.timestamp_created}</Text>
                            <Text>{comment.comment}</Text>
                         </View>
                      )

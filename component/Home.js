@@ -41,7 +41,7 @@ export default class Home extends Component {
    componentDidMount() {
       axios({
          method: 'get',
-         url: this.state.base_url + '/posts?limit=5'
+         url: this.state.base_url + 'posts?limit=5'
        })
        .then(data => {
           this.setState({

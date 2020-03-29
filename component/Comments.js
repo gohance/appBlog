@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
+import axios from 'axios';
 
 export default class Comments extends Component {
    constructor (props) {
       super(props);
       this.state = {
-         comment : ''
+         comment : '',
+         base_url: "https://blog-purwadhika.appspot.com/"
       }
+
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSave = this.handleSave.bind(this);
    }
    render() {
       return (
@@ -26,13 +31,25 @@ export default class Comments extends Component {
    handleChange (input) {
       this.setState({
          comment: input
-      }, function () {
-         console.log(this.state.comment)
       })
    }
 
    handleSave () {
-      // upload to server
-      // kalau berhasil, kembali ke detail
+      const { post } = this.props.route.params;
+
+      axios({
+         method: 'post',
+         url: this.state.base_url + 'comments/',
+         data: {
+            post_id: post.id,
+            comment: this.state.comment
+         }
+       })
+       .then(data => {
+          this.props.navigation.goBack();
+       })
+       .catch(err => {
+         console.log(err);
+       });
    }
 }
