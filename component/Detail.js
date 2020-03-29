@@ -1,33 +1,14 @@
 import React, { Component } from 'react';
 import {View, Text, ScrollView, Image, Button} from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 export default class Detail extends Component {
    constructor(props) {
       super(props);
 
       this.state = {
-         comments: [
-            {
-               id: 1,
-               name: "Gohan",
-               date: "1 Januari 2020",
-               comment: "Wah bagus ya postingannya"
-            },
-            {
-               id: 2,
-               name: "Ega",
-               date: "2 Januari 2020",
-               comment: "Wah bagus ya postingannya"
-            },
-            {
-               id: 3,
-               name: "Sam",
-               date: "3 Januari 2020",
-               comment: "Wah bagus ya postingannya"
-            }
-         ]
+         comments: [],
+         base_url: "https://blog-purwadhika.appspot.com/"
       }
    }
    
@@ -38,8 +19,8 @@ export default class Detail extends Component {
          <ScrollView>
             <View style={{ padding: 10 }}>
                <Image
-                  style={{flex: 1, height: 300}}
-                  source={{uri: post.image_banner}}
+                  style={{ flex: 1, height: 300, alignSelf: 'center' }}
+                  source={{ uri: post.image_banner }}
                   />
                <Text>{post.category + " - " + "1 Januari 2020"}</Text>
                <View style={{ flexDirection: 'row', alignItems: 'center'}}>
@@ -67,9 +48,9 @@ export default class Detail extends Component {
                {
                   this.state.comments.map(comment => {
                      return(
-                        <View key={comment.id} style={{ marginBottom: 20 }}>
-                           <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{comment.name}</Text>
-                           <Text>{comment.date}</Text>
+                        <View key={comment.id} style={{ paddingTop: 10, paddingBottom: 10, borderBottomColor: '#d1d1d1', borderBottomWidth: 1 }}>
+                           <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{"Gohan Parningotan"}</Text>
+                           <Text style={{ color: '#888888', marginBottom: 10}}>{comment.timestamp_created}</Text>
                            <Text>{comment.comment}</Text>
                         </View>
                      )
@@ -78,5 +59,21 @@ export default class Detail extends Component {
             </View>
          </ScrollView>
       )
+   }
+
+   componentDidMount () {
+      const { post } = this.props.route.params;
+      axios({
+         method: 'get',
+         url: this.state.base_url + 'post/'+ post.id +'/comments/' 
+       })
+       .then(data => {
+          this.setState({
+             comments: data.data.results
+          })
+       })
+       .catch(err => {
+         console.log(err);
+       });
    }
 }

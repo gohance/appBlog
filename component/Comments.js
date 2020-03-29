@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 
-export default class Home extends Component {
+export default class Comments extends Component {
    constructor (props) {
       super(props);
       this.state = {
