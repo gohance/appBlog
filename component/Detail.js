@@ -39,15 +39,15 @@ export default class Detail extends Component {
             <View style={{ padding: 10 }}>
                <Image
                   style={{flex: 1, height: 300}}
-                  source={{uri: post.image}}
+                  source={{uri: post.image_banner}}
                   />
                <Text>{post.category + " - " + "1 Januari 2020"}</Text>
                <View style={{ flexDirection: 'row', alignItems: 'center'}}>
                   <Image
                      style={{width: 40, height: 40, borderRadius: 20, marginRight: 16}}
-                     source={{uri: post.author.image}}
+                     source={{uri: post.author_image}}
                      />
-                  <Text>{post.author.name}</Text>
+                  <Text>{post.author_name}</Text>
                </View>
                <Text style={{ marginBottom: 10 }}>{post.content}</Text>
             </View>
