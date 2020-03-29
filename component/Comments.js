@@ -32,6 +32,7 @@ export default class Home extends Component {
    }
 
    handleSave () {
-      
+      // upload to server
+      // kalau berhasil, kembali ke detail
    }
 }

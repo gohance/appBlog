@@ -6,6 +6,29 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 export default class Detail extends Component {
    constructor(props) {
       super(props);
+
+      this.state = {
+         comments: [
+            {
+               id: 1,
+               name: "Gohan",
+               date: "1 Januari 2020",
+               comment: "Wah bagus ya postingannya"
+            },
+            {
+               id: 2,
+               name: "Ega",
+               date: "2 Januari 2020",
+               comment: "Wah bagus ya postingannya"
+            },
+            {
+               id: 3,
+               name: "Sam",
+               date: "3 Januari 2020",
+               comment: "Wah bagus ya postingannya"
+            }
+         ]
+      }
    }
    
    render() {
@@ -32,6 +55,27 @@ export default class Detail extends Component {
                   title="Buat Komentar" 
                   onPress={() => this.props.navigation.navigate('Comments', {post: post})}
                   />
+
+            <View style={{ 
+                  marginTop: 30, 
+                  marginBottom: 30, 
+                  borderTopWidth: 1, 
+                  borderColor: '#d1d1d1',
+                  padding: 10
+                  }}>
+               <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}> Komentar Pengunjung </Text>
+               {
+                  this.state.comments.map(comment => {
+                     return(
+                        <View key={comment.id} style={{ marginBottom: 20 }}>
+                           <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{comment.name}</Text>
+                           <Text>{comment.date}</Text>
+                           <Text>{comment.comment}</Text>
+                        </View>
+                     )
+                  })
+               }
+            </View>
          </ScrollView>
       )
    }
